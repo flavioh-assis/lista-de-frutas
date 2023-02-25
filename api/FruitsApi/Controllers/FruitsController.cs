@@ -14,4 +14,19 @@ public class FruitsController : ControllerBase
     {
         _service = service;
     }
+
+    [HttpPost]
+    public async Task<ActionResult<IEnumerable<Fruit>>> Post([FromBody] Fruit request)
+    {
+        try
+        {
+            var createdFruit = await _service.AddFruit(request);
+
+            return Created("Fruit created.", createdFruit);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
+    }
 }
