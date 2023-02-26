@@ -17,9 +17,24 @@ public class FruitsController : ControllerBase
     {
         try
         {
-            var createdFruit = await _service.CreateFruit(request);
+            var createdFruit = _service.CreateFruit(request);
 
             return Created("Fruit created.", createdFruit);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Fruit>>> GetAll()
+    {
+        try
+        {
+            var fruits = _service.GetAll();
+
+            return Ok(fruits);
         }
         catch (Exception e)
         {
