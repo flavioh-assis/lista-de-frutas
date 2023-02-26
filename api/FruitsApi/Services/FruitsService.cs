@@ -45,4 +45,14 @@ public class FruitsService
 
         return fruit;
     }
+
+    public async Task<Fruit> Delete(int id)
+    {
+        var fruit = await GetById(id);
+
+        _context.Fruits.Remove(fruit);
+        Commit();
+
+        return fruit;
+    }
 }
