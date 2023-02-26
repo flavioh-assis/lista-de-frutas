@@ -64,7 +64,22 @@ public class FruitsController : ControllerBase
         {
             var fruit = await _service.Update(id, request);
 
-            return fruit;
+            return Ok(fruit);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
+    }
+    
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<Fruit>> Delete([FromRoute] int id)
+    {
+        try
+        {
+            var deletedFruit = await _service.Delete(id);
+
+            return Ok(deletedFruit);
         }
         catch (Exception e)
         {
