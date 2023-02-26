@@ -12,7 +12,7 @@ public class FruitsService
 
     private async void Commit() => await _context.SaveChangesAsync();
 
-    public Fruit CreateFruit(Fruit fruit)
+    public Fruit Create(Fruit fruit)
     {
         _context.Fruits.Add(fruit);
         Commit();
@@ -22,7 +22,7 @@ public class FruitsService
 
     public IEnumerable<Fruit> GetAll()
     {
-        var fruits = _context.Fruits.ToImmutableList();
+        var fruits = _context.Fruits.ToImmutableList().OrderBy(p => p.Description);
 
         return fruits;
     }
