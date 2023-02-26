@@ -19,4 +19,11 @@ public class FruitsService
 
         return fruit;
     }
+
+    public IEnumerable<Fruit> GetAll()
+    {
+        var fruits = _context.Fruits.ToImmutableList();
+        
+        return fruits;
+    }
 }
