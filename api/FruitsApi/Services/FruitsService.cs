@@ -11,7 +11,7 @@ public class FruitsService
     public FruitsService(FruitContext context) => _context = context;
 
     private async void Commit() => await _context.SaveChangesAsync();
-    
+
     public Fruit CreateFruit(Fruit fruit)
     {
         _context.Fruits.Add(fruit);
@@ -23,7 +23,7 @@ public class FruitsService
     public IEnumerable<Fruit> GetAll()
     {
         var fruits = _context.Fruits.ToImmutableList();
-        
+
         return fruits;
     }
 
@@ -34,9 +34,13 @@ public class FruitsService
         return fruit;
     }
 
-    public async Task<Fruit> Update(Fruit fruit)
+    public async Task<Fruit> Update(int id, Fruit newData)
     {
-        _context.Fruits.Update(fruit);
+        var fruit = await GetById(id);
+        fruit.Description = newData.Description;
+        fruit.ValueA = newData.ValueA;
+        fruit.ValueB = newData.ValueB;
+
         Commit();
 
         return fruit;
