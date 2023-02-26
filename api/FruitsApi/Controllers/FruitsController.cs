@@ -13,11 +13,11 @@ public class FruitsController : ControllerBase
     public FruitsController(FruitsService service) => _service = service;
 
     [HttpPost]
-    public async Task<ActionResult<Fruit>> PostFruit([FromBody] Fruit request)
+    public async Task<ActionResult<Fruit>> Post([FromBody] Fruit request)
     {
         try
         {
-            var createdFruit = _service.CreateFruit(request);
+            var createdFruit = _service.Create(request);
 
             return Created("Fruit created.", createdFruit);
         }
