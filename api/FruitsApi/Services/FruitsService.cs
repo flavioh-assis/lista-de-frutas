@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using FruitsApi.Data.Context;
 using FruitsApi.Models;
 
@@ -7,15 +8,14 @@ public class FruitsService
 {
     private readonly FruitContext _context;
 
-    public FruitsService(FruitContext context)
-    {
-        _context = context;
-    }
+    public FruitsService(FruitContext context) => _context = context;
 
-    public async Task<Fruit> CreateFruit(Fruit fruit)
+    private async void Commit() => await _context.SaveChangesAsync();
+    
+    public Fruit CreateFruit(Fruit fruit)
     {
         _context.Fruits.Add(fruit);
-        await _context.SaveChangesAsync();
+        Commit();
 
         return fruit;
     }
