@@ -56,4 +56,19 @@ public class FruitsController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Fruit>> Update([FromRoute] int id, [FromBody] Fruit request)
+    {
+        try
+        {
+            var fruit = await _service.Update(request);
+
+            return fruit;
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
+    }
 }
