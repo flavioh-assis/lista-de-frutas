@@ -41,4 +41,19 @@ public class FruitsController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Fruit>> GetById([FromRoute] int id)
+    {
+        try
+        {
+            var fruit = await _service.GetById(id);
+
+            return Ok(fruit);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
+    }
 }
