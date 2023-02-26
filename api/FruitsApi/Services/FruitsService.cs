@@ -26,4 +26,11 @@ public class FruitsService
         
         return fruits;
     }
+
+    public async Task<Fruit> GetById(int id)
+    {
+        var fruit = await _context.Fruits.FindAsync(id);
+
+        return fruit;
+    }
 }
