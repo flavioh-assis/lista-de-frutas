@@ -16,8 +16,6 @@ builder.Services.AddScoped<FruitsService>();
 
 var app = builder.Build();
 
-app.UsePathBase(new PathString("/api"));
-
 app.UseCors(options =>
     options.WithOrigins("http://localhost:3000")
         .AllowAnyHeader()
