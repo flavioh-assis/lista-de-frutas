@@ -30,7 +30,6 @@ if (app.Environment.IsDevelopment())
     {
         options.EnableTryItOutByDefault();
         options.DefaultModelRendering(Swashbuckle.AspNetCore.SwaggerUI.ModelRendering.Model);
-        options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
     });
 }
 
