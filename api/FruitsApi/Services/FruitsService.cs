@@ -12,13 +12,11 @@ public class FruitsService
         _context = context;
     }
 
-    public async Task<IEnumerable<Fruit>> AddFruit(Fruit fruit)
+    public async Task<Fruit> CreateFruit(Fruit fruit)
     {
         _context.Fruits.Add(fruit);
         await _context.SaveChangesAsync();
 
-        var allFruits = _context.Fruits.ToList();
-        
-        return allFruits;
+        return fruit;
     }
 }

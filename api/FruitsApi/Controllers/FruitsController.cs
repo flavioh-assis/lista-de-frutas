@@ -10,17 +10,14 @@ public class FruitsController : ControllerBase
 {
     private readonly FruitsService _service;
 
-    public FruitsController(FruitsService service)
-    {
-        _service = service;
-    }
+    public FruitsController(FruitsService service) => _service = service;
 
     [HttpPost]
-    public async Task<ActionResult<IEnumerable<Fruit>>> Post([FromBody] Fruit request)
+    public async Task<ActionResult<Fruit>> PostFruit([FromBody] Fruit request)
     {
         try
         {
-            var createdFruit = await _service.AddFruit(request);
+            var createdFruit = await _service.CreateFruit(request);
 
             return Created("Fruit created.", createdFruit);
         }
