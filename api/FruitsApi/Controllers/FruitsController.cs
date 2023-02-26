@@ -62,7 +62,7 @@ public class FruitsController : ControllerBase
     {
         try
         {
-            var fruit = await _service.Update(request);
+            var fruit = await _service.Update(id, request);
 
             return fruit;
         }
