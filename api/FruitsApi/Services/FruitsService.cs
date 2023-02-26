@@ -33,4 +33,12 @@ public class FruitsService
 
         return fruit;
     }
+
+    public async Task<Fruit> Update(Fruit fruit)
+    {
+        _context.Fruits.Update(fruit);
+        Commit();
+
+        return fruit;
+    }
 }
