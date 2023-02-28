@@ -17,7 +17,7 @@ public class FruitsController : ControllerBase
     {
         try
         {
-            var createdFruit = _service.Create(request);
+            var createdFruit = await _service.Create(request);
 
             return Created("Fruit created.", createdFruit);
         }
