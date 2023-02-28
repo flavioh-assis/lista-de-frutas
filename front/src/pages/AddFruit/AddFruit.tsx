@@ -35,6 +35,7 @@ const AddFruit = () => {
       {contextHolder}
 
       <Form
+        style={{ alignItems: 'flex-end' }}
         form={formFruit}
         onFinish={newFruit =>
           mutate(newFruit, {
@@ -46,32 +47,45 @@ const AddFruit = () => {
           required: 'Campo obrigatório',
         }}
         validateTrigger={false}
+        layout='inline'
       >
         <Form.Item
           label='Descrição'
+          labelAlign='left'
+          labelCol={{ span: 20 }}
+          wrapperCol={{ span: 20 }}
           name='description'
           rules={[{ required: true }]}
+          style={{ marginInlineEnd: 0 }}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
           label='Valor A'
+          labelAlign='left'
+          labelCol={{ span: 20 }}
+          wrapperCol={{ span: 20 }}
           name='valueA'
           rules={[{ required: true }]}
+          style={{ marginInlineEnd: 0 }}
         >
           <Input type='number' />
         </Form.Item>
 
         <Form.Item
           label='Valor B'
+          labelCol={{ span: 20 }}
+          wrapperCol={{ span: 20 }}
           name='valueB'
+          labelAlign='left'
           rules={[{ required: true }]}
+          style={{ marginInlineEnd: 0 }}
         >
           <Input type='number' />
         </Form.Item>
 
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div style={{ display: 'flex', gap: '2rem' }}>
           <Button
             type='submit'
             color='primary'
