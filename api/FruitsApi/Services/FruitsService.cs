@@ -10,12 +10,12 @@ public class FruitsService
 
     public FruitsService(FruitContext context) => _context = context;
 
-    private async void Commit() => await _context.SaveChangesAsync();
+    private async Task CommitAsync() => await _context.SaveChangesAsync();
 
-    public Fruit Create(Fruit fruit)
+    public async Task<Fruit> Create(Fruit fruit)
     {
         _context.Fruits.Add(fruit);
-        Commit();
+        await CommitAsync();
 
         return fruit;
     }
@@ -41,7 +41,7 @@ public class FruitsService
         fruit.ValueA = newData.ValueA;
         fruit.ValueB = newData.ValueB;
 
-        Commit();
+        await CommitAsync();
 
         return fruit;
     }
@@ -51,7 +51,7 @@ public class FruitsService
         var fruit = await GetById(id);
 
         _context.Fruits.Remove(fruit);
-        Commit();
+        await CommitAsync();
 
         return fruit;
     }
