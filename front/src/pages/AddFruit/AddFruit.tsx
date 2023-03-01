@@ -1,6 +1,7 @@
 import { Form, notification } from 'antd';
-import { Button, Input } from '../../components';
-import { MutationCreate } from '../../services/fruit.service';
+import { useEffect } from 'react';
+import { Button, Input, Table } from '../../components';
+import { MutationCreate, UseQueryAllFruits } from '../../services/fruit.service';
 import { Page as PageAddFruit } from '../../styles/shared';
 import { FruitDTO } from '../../types';
 
@@ -9,6 +10,8 @@ const AddFruit = () => {
   const [api, contextHolder] = notification.useNotification();
 
   const { mutate } = MutationCreate();
+  const { data, refetch } = UseQueryAllFruits();
+  const fruits = data || [];
 
   const openNotificationSuccess = ({ description }: FruitDTO) => {
     api.destroy();
@@ -30,12 +33,16 @@ const AddFruit = () => {
     });
   };
 
+  useEffect(() => {
+    refetch();
+  }, []);
+
   return (
     <PageAddFruit>
       {contextHolder}
 
       <Form
-        style={{ alignItems: 'flex-end' }}
+        style={{ alignItems: 'flex-end' /* , maxWidth: '70rem' */ }}
         form={formFruit}
         onFinish={newFruit =>
           mutate(newFruit, {
@@ -96,6 +103,8 @@ const AddFruit = () => {
           <Button type='reset'>Limpar</Button>
         </div>
       </Form>
+
+      <Table fruits={fruits} />
     </PageAddFruit>
   );
 };
