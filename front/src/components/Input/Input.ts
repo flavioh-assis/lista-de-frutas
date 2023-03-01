@@ -4,6 +4,7 @@ const Input = styled.input`
   background-color: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 6px;
+  box-shadow: 0px 4px 10px -5px rgba(0, 0, 0, 0.75);
 
   color: #000;
   font-size: 11pt;
@@ -14,11 +15,11 @@ const Input = styled.input`
   width: 100%;
 
   :hover {
-    border-color: #4096ff;
+    border-color: #4147ff;
   }
 
   :focus {
-    border-color: #4096ff;
+    border-color: #4147ff;
     outline: none;
   }
 `;
