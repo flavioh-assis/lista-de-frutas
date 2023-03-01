@@ -3,11 +3,15 @@ import { createGlobalStyle } from 'styled-components';
 // import fonts from 'resources/fonts';
 
 export default createGlobalStyle`
+  body {
+    background-image: url('https://www.lambda3.com.br/wp-content/uploads/2017/02/bg-site.png');
+  }
+
   #root {
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
   }
-	
+
   * {
 		padding: 0;
     margin: 0;
