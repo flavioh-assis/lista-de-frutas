@@ -5,9 +5,8 @@ type Props = {
 };
 
 const Button = styled.button<Props>`
-  background: ${({ color }) => (color === 'primary' ? '#1677ff' : '#fff')};
-  box-shadow: ${({ color }) =>
-    color === 'primary' ? '0 2px 0 rgb(5 145 255 / 10%)' : '0 2px 0 rgb(0 0 0 / 2%)'};
+  background: ${({ color }) => (color === 'primary' ? '#4147ff' : '#fff')};
+  box-shadow: 0px 4px 10px -5px rgba(0, 0, 0, 0.75);
 
   border-color: ${({ color }) => (color === 'primary' ? '#00000000' : '#d9d9d9')};
   border-style: solid;
@@ -24,9 +23,9 @@ const Button = styled.button<Props>`
   transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   :hover {
-    background: ${({ color }) => (color === 'primary' ? '#4096ff' : '#fff')};
-    border-color: #4096ff;
-    color: ${({ color }) => (color === 'primary' ? '#fff' : '#4096ff')};
+    background: ${({ color }) => (color === 'primary' ? '#7276fa' : '#fff')};
+    border-color: #7276fa;
+    color: ${({ color }) => (color === 'primary' ? '#fff' : '#7276fa')};
   }
 `;
 
