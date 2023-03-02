@@ -10,19 +10,21 @@ const create = async (fruit: FruitDTO) => {
   return data as Fruit;
 };
 
+const update = async (fruit: Fruit) => {
+  const { data } = await api.put(`${fruitsUrl}/${fruit.id}`, fruit);
+
+  return data as Fruit;
+};
+
 const getAll = async () => {
   const { data } = await api.get(fruitsUrl);
 
   return data as Fruit[];
 };
 
-const update = async (fruit: Fruit) => {
-  const { data } = await api.put(fruitsUrl, fruit);
-
-  return data as Fruit;
-};
-
 export const MutationCreate = () => useMutation(create);
+
+export const MutationUpdate = () => useMutation(update);
 
 export const UseQueryAllFruits = () => {
   return useQuery(['getAll'], () => getAll(), {
@@ -30,5 +32,3 @@ export const UseQueryAllFruits = () => {
     retryDelay: 5000,
   });
 };
-
-export const MutationUpdate = () => useMutation(update);
