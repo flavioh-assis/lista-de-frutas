@@ -1,7 +1,12 @@
 import { notification } from 'antd';
 import { useEffect, useState } from 'react';
-import { FormFruit, Table } from '../../components';
-import { MutationCreate, MutationUpdate, UseQueryAllFruits } from '../../services/fruit.service';
+import { FormFruit, Modal, Table } from '../../components';
+import {
+  MutationCreate,
+  MutationDelete,
+  MutationUpdate,
+  UseQueryAllFruits,
+} from '../../services/fruit.service';
 import { Page as PageAddFruit } from '../../styles/shared';
 import { Fruit, FruitDTO } from '../../types';
 
@@ -15,24 +20,50 @@ const AddFruit = () => {
     valueB: 0,
   };
   const [selectedFruit, setSelectedFruit] = useState(initialState);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [idToBeDeleted, setIdToBeDeleted] = useState(0);
 
   const { mutate: mutateCreate } = MutationCreate();
   const { mutate: mutateUpdate } = MutationUpdate();
+  const { mutate: mutateDelete } = MutationDelete();
+
   const { data, refetch } = UseQueryAllFruits();
   const fruits = data || [];
 
-  const openNotificationSuccess = ({ description }: FruitDTO) => {
-    api.destroy();
+  const closeModal = () => setIsModalOpen(false);
+
+  const openModal = () => setIsModalOpen(true);
+
+  const resetSelectedFruit = () => setSelectedFruit(initialState);
+
+  const openNotificationDeleteSuccess = () => {
     api.success({
       message: 'Sucesso!',
-      description: `${description} foi adicionado(a).`,
+      description: 'Fruta excluída.',
+      placement: 'bottom',
+      duration: 3,
+    });
+  };
+
+  const openNotificationUpdateSuccess = () => {
+    api.success({
+      message: 'Sucesso!',
+      description: 'Fruta atualizada.',
+      placement: 'bottom',
+      duration: 3,
+    });
+  };
+
+  const openNotificationAddSuccess = () => {
+    api.success({
+      message: 'Sucesso!',
+      description: 'Fruta adicionada.',
       placement: 'bottom',
       duration: 3,
     });
   };
 
   const openNotificationError = (error: unknown) => {
-    api.destroy();
     api.error({
       message: 'Erro inesperado!',
       description: `Não foi possível adicionar a fruta. ${error}`,
@@ -41,11 +72,15 @@ const AddFruit = () => {
     });
   };
 
-  const createNewFruit = (fruit: FruitDTO) => {
+  const handleSubmit = async (fruit: Fruit) => {
+    return selectedFruit.id ? updateFruit(fruit) : addNewFruit(fruit);
+  };
+
+  const addNewFruit = (fruit: FruitDTO) => {
     return new Promise<void>((resolve, reject) => {
       mutateCreate(fruit, {
         onSuccess: () => {
-          openNotificationSuccess(fruit);
+          openNotificationAddSuccess();
           refetch();
           resolve();
         },
@@ -55,19 +90,15 @@ const AddFruit = () => {
         },
       });
     });
-  };
-
-  const resetSelectedFruit = () => {
-    setSelectedFruit(initialState);
   };
 
   const updateFruit = (fruit: Fruit) => {
     return new Promise<void>((resolve, reject) => {
       mutateUpdate(fruit, {
         onSuccess: () => {
-          openNotificationSuccess(fruit);
-          refetch();
+          openNotificationUpdateSuccess();
           resetSelectedFruit();
+          refetch();
           resolve();
         },
         onError: error => {
@@ -78,8 +109,24 @@ const AddFruit = () => {
     });
   };
 
-  const handleSubmit = async (fruit: Fruit) => {
-    return selectedFruit.id ? updateFruit(fruit) : createNewFruit(fruit);
+  const handleDelete = async (id: number) => {
+    setIdToBeDeleted(id);
+    openModal();
+  };
+
+  const deleteFruit = () => {
+    mutateDelete(idToBeDeleted, {
+      onSuccess: () => {
+        openNotificationDeleteSuccess();
+        resetSelectedFruit();
+        setIdToBeDeleted(0);
+        closeModal();
+        refetch();
+      },
+      onError: error => {
+        openNotificationError(error);
+      },
+    });
   };
 
   useEffect(() => {
@@ -91,13 +138,21 @@ const AddFruit = () => {
       {contextHolder}
 
       <FormFruit
-        onSubmit={handleSubmit}
         formFieldsValue={selectedFruit}
+        onSubmit={handleSubmit}
+        resetSelectedFruit={resetSelectedFruit}
       />
 
       <Table
         fruits={fruits}
+        handleDelete={handleDelete}
         setSelectedFruit={setSelectedFruit}
+      />
+
+      <Modal
+        isOpen={isModalOpen}
+        onConfirm={deleteFruit}
+        onCancel={closeModal}
       />
     </PageAddFruit>
   );
