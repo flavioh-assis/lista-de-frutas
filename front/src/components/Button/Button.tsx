@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-type Props = {
-  color?: 'primary' | 'default';
-};
-
-const Button = styled.button<Props>`
+const Button = styled.button<{ color?: 'primary' | 'default' }>`
   background: ${({ color }) => (color === 'primary' ? '#4147ff' : '#fff')};
   box-shadow: 0px 4px 10px -5px rgba(0, 0, 0, 0.75);
 
@@ -25,8 +21,8 @@ const Button = styled.button<Props>`
   :hover,
   :focus-visible {
     background: ${({ color }) => (color === 'primary' ? '#7276fa' : '#fff')};
-    border-color: #7276fa;
-    color: ${({ color }) => (color === 'primary' ? '#fff' : '#7276fa')};
+    border-color: ${({ color }) => (color === 'primary' ? '#7276fa' : '#4147ff')};
+    color: ${({ color }) => (color === 'primary' ? '#fff' : '#4147ff')};
     outline: none;
   }
 `;
