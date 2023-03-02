@@ -2,16 +2,24 @@ import { useMutation, useQuery } from 'react-query';
 import api from './api';
 import { Fruit, FruitDTO } from '../types';
 
+const fruitsUrl = 'fruits';
+
 const create = async (fruit: FruitDTO) => {
-  const { data } = await api.post('fruits', fruit);
+  const { data } = await api.post(fruitsUrl, fruit);
 
   return data as Fruit;
 };
 
 const getAll = async () => {
-  const { data } = await api.get('fruits');
+  const { data } = await api.get(fruitsUrl);
 
-  return data ? (data as Fruit[]) : [];
+  return data as Fruit[];
+};
+
+const update = async (fruit: Fruit) => {
+  const { data } = await api.put(fruitsUrl, fruit);
+
+  return data as Fruit;
 };
 
 export const MutationCreate = () => useMutation(create);
@@ -22,3 +30,5 @@ export const UseQueryAllFruits = () => {
     retryDelay: 5000,
   });
 };
+
+export const MutationUpdate = () => useMutation(update);
