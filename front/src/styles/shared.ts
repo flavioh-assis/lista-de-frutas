@@ -6,7 +6,7 @@ export const Page = styled.main`
   align-items: center;
   padding: 5rem 2rem;
 
-  max-width: 92rem;
+  max-width: 75rem;
   min-height: 100vh;
   margin: auto;
   gap: 5rem;
