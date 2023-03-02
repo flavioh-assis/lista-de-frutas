@@ -1,14 +1,23 @@
 import { notification } from 'antd';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FormFruit, Table } from '../../components';
-import { MutationCreate, UseQueryAllFruits } from '../../services/fruit.service';
+import { MutationCreate, MutationUpdate, UseQueryAllFruits } from '../../services/fruit.service';
 import { Page as PageAddFruit } from '../../styles/shared';
 import { Fruit, FruitDTO } from '../../types';
 
 const AddFruit = () => {
   const [api, contextHolder] = notification.useNotification();
 
-  const { mutate } = MutationCreate();
+  const initialState: Fruit = {
+    id: 0,
+    description: '',
+    valueA: 0,
+    valueB: 0,
+  };
+  const [selectedFruit, setSelectedFruit] = useState(initialState);
+
+  const { mutate: mutateCreate } = MutationCreate();
+  const { mutate: mutateUpdate } = MutationUpdate();
   const { data, refetch } = UseQueryAllFruits();
   const fruits = data || [];
 
@@ -32,9 +41,9 @@ const AddFruit = () => {
     });
   };
 
-  const handleSubmit = async (fruit: Fruit) => {
+  const createNewFruit = (fruit: FruitDTO) => {
     return new Promise<void>((resolve, reject) => {
-      mutate(fruit, {
+      mutateCreate(fruit, {
         onSuccess: () => {
           openNotificationSuccess(fruit);
           refetch();
@@ -48,6 +57,31 @@ const AddFruit = () => {
     });
   };
 
+  const resetSelectedFruit = () => {
+    setSelectedFruit(initialState);
+  };
+
+  const updateFruit = (fruit: Fruit) => {
+    return new Promise<void>((resolve, reject) => {
+      mutateUpdate(fruit, {
+        onSuccess: () => {
+          openNotificationSuccess(fruit);
+          refetch();
+          resetSelectedFruit();
+          resolve();
+        },
+        onError: error => {
+          openNotificationError(error);
+          reject();
+        },
+      });
+    });
+  };
+
+  const handleSubmit = async (fruit: Fruit) => {
+    return selectedFruit.id ? updateFruit(fruit) : createNewFruit(fruit);
+  };
+
   useEffect(() => {
     refetch();
   }, []);
@@ -56,9 +90,15 @@ const AddFruit = () => {
     <PageAddFruit>
       {contextHolder}
 
-      <FormFruit onSubmit={handleSubmit} />
+      <FormFruit
+        onSubmit={handleSubmit}
+        formFieldsValue={selectedFruit}
+      />
 
-      <Table fruits={fruits} />
+      <Table
+        fruits={fruits}
+        setSelectedFruit={setSelectedFruit}
+      />
     </PageAddFruit>
   );
 };
