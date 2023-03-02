@@ -22,12 +22,13 @@ const Button = styled.button<Props>`
   padding: 4px 15px;
   transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-  :hover {
+  :hover,
+  :focus-visible {
     background: ${({ color }) => (color === 'primary' ? '#7276fa' : '#fff')};
     border-color: #7276fa;
     color: ${({ color }) => (color === 'primary' ? '#fff' : '#7276fa')};
+    outline: none;
   }
 `;
 
 export default Button;
-
