@@ -14,9 +14,10 @@ import {
 
 type Props = {
   fruits: Fruit[];
+  setSelectedFruit: React.Dispatch<React.SetStateAction<Fruit>>;
 };
 
-const Table = ({ fruits }: Props) => {
+const Table = ({ fruits, setSelectedFruit }: Props) => {
   return (
     <TableContainer role='table'>
       <Head role='rowgroup'>
@@ -39,15 +40,24 @@ const Table = ({ fruits }: Props) => {
               <Cell>{f.valueB}</Cell>
 
               <CellAction>
-                <ButtonIcon icon='link' />
+                <ButtonIcon
+                  icon='link'
+                  onClick={() => console.log('link')}
+                />
               </CellAction>
 
               <CellAction>
-                <ButtonIcon icon='edit' />
+                <ButtonIcon
+                  icon='edit'
+                  onClick={() => setSelectedFruit(f)}
+                />
               </CellAction>
 
               <CellAction>
-                <ButtonIcon icon='delete' />
+                <ButtonIcon
+                  icon='delete'
+                  onClick={() => console.log('Delete')}
+                />
               </CellAction>
             </Row>
           ))
@@ -60,4 +70,3 @@ const Table = ({ fruits }: Props) => {
 };
 
 export default Table;
-
