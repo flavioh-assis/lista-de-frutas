@@ -20,7 +20,5 @@ export const UseQueryAllFruits = () => {
   return useQuery(['getAll'], () => getAll(), {
     enabled: false,
     retryDelay: 5000,
-    retry: 5,
   });
 };
-
