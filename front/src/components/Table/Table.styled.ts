@@ -65,7 +65,7 @@ export const Row = styled.div`
   justify-content: center;
 
   :nth-of-type(even) {
-    background: #eee;
+    background: #ddd;
   }
   /* padding: 5px; */
   /* background: red; */
@@ -110,4 +110,3 @@ export const CellAction = styled.div`
 
   /* border: 2px solid black; */
 `;
-
