@@ -4,30 +4,38 @@ import { Fruit, FruitDTO } from '../types';
 
 const fruitsUrl = 'fruits';
 
-const create = async (fruit: FruitDTO) => {
+const createFruit = async (fruit: FruitDTO) => {
   const { data } = await api.post(fruitsUrl, fruit);
 
   return data as Fruit;
 };
 
-const update = async (fruit: Fruit) => {
+const updateFruit = async (fruit: Fruit) => {
   const { data } = await api.put(`${fruitsUrl}/${fruit.id}`, fruit);
 
   return data as Fruit;
 };
 
-const getAll = async () => {
+const getAllFruits = async () => {
   const { data } = await api.get(fruitsUrl);
 
   return data as Fruit[];
 };
 
-export const MutationCreate = () => useMutation(create);
+const deleteFruit = async (id: number) => {
+  const { data } = await api.delete(`${fruitsUrl}/${id}`);
 
-export const MutationUpdate = () => useMutation(update);
+  return data as Fruit;
+};
+
+export const MutationCreate = () => useMutation(createFruit);
+
+export const MutationUpdate = () => useMutation(updateFruit);
+
+export const MutationDelete = () => useMutation(deleteFruit);
 
 export const UseQueryAllFruits = () => {
-  return useQuery(['getAll'], () => getAll(), {
+  return useQuery(['getAllFruits'], () => getAllFruits(), {
     enabled: false,
     retryDelay: 5000,
   });
