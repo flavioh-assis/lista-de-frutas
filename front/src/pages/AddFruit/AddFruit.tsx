@@ -25,15 +25,15 @@ const AddFruit = () => {
   const openNotificationError = (error: unknown) => {
     api.destroy();
     api.error({
-      message: 'Erro!',
-      description: `Não foi possível adicionar a fruta selecionada. ${error}`,
+      message: 'Erro inesperado!',
+      description: `Não foi possível adicionar a fruta. ${error}`,
       placement: 'bottom',
       duration: 3,
     });
   };
 
   const handleSubmit = async (fruit: Fruit) => {
-    return new Promise<void>((resolve, rej) => {
+    return new Promise<void>((resolve, reject) => {
       mutate(fruit, {
         onSuccess: () => {
           openNotificationSuccess(fruit);
@@ -42,7 +42,7 @@ const AddFruit = () => {
         },
         onError: error => {
           openNotificationError(error);
-          rej();
+          reject();
         },
       });
     });
