@@ -4,10 +4,11 @@ import { StyledButton } from './ButtonIcon.styled';
 type Props = {
   icon: 'link' | 'edit' | 'delete';
   size?: number;
+  onClick: VoidFunction;
 };
 
-const ButtonIcon = ({ icon, size = 20 }: Props) => {
-  const iconComponent = ({ icon, size }: Props) => {
+const ButtonIcon = ({ icon, size = 20, onClick }: Props) => {
+  const iconComponent = (icon: string, size: number) => {
     if (icon === 'link') {
       return <FiExternalLink size={size} />;
     }
@@ -17,8 +18,14 @@ const ButtonIcon = ({ icon, size = 20 }: Props) => {
     return <FiTrash2 size={size} />;
   };
 
-  return <StyledButton>{iconComponent({ icon, size })}</StyledButton>;
+  return (
+    <StyledButton
+      onClick={() => onClick()}
+      type='button'
+    >
+      {iconComponent(icon, size)}
+    </StyledButton>
+  );
 };
 
 export default ButtonIcon;
-
