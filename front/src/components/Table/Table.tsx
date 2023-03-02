@@ -15,9 +15,10 @@ import {
 type Props = {
   fruits: Fruit[];
   setSelectedFruit: React.Dispatch<React.SetStateAction<Fruit>>;
+  handleDelete: (id: number) => Promise<void>;
 };
 
-const Table = ({ fruits, setSelectedFruit }: Props) => {
+const Table = ({ fruits, setSelectedFruit, handleDelete }: Props) => {
   return (
     <TableContainer role='table'>
       <Head role='rowgroup'>
@@ -56,7 +57,7 @@ const Table = ({ fruits, setSelectedFruit }: Props) => {
               <CellAction>
                 <ButtonIcon
                   icon='delete'
-                  onClick={() => console.log('Delete')}
+                  onClick={() => handleDelete(f.id)}
                 />
               </CellAction>
             </Row>
