@@ -3,19 +3,32 @@ import { Fruit } from '../../types';
 import { Button } from '../../components';
 import { ButtonWrapper, Form, FormContainer, InputWrapper, Title } from './Form.styled';
 import FormInput from '../FormInput/FormInput';
+import { useEffect } from 'react';
 
 type Props = {
+  formFieldsValue: Fruit;
   onSubmit: (fruit: Fruit) => Promise<void>;
 };
 
-const FormFruit = ({ onSubmit }: Props) => {
-  const { handleSubmit, register, reset } = useForm<Fruit>();
+const FormFruit = ({ onSubmit, formFieldsValue }: Props) => {
+  const { handleSubmit, register, reset, setValue } = useForm<Fruit>();
 
   const handleFormSubmit: SubmitHandler<Fruit> = async fruit => {
     onSubmit(fruit).then(() => {
       reset();
     });
   };
+
+  const setValues = (fruit: Fruit) => {
+    setValue('id', fruit.id);
+    setValue('description', fruit.description);
+    fruit.valueA && setValue('valueA', fruit.valueA);
+    fruit.valueB && setValue('valueB', fruit.valueB);
+  };
+
+  useEffect(() => {
+    setValues(formFieldsValue);
+  }, [formFieldsValue]);
 
   return (
     <FormContainer>
