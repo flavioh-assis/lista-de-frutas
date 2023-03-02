@@ -3,20 +3,26 @@ import { ButtonWrapper } from '../Form/Form.styled';
 import { ModalContainer, Content, Title } from './Modal.styled';
 
 type Props = {
-  fruitDescription: string;
   isOpen: boolean;
+  onConfirm: () => void;
+  onCancel: VoidFunction;
 };
 
-const Modal = ({ fruitDescription, isOpen }: Props) => {
+const Modal = ({ isOpen, onConfirm, onCancel }: Props) => {
   return (
     <ModalContainer isOpen={isOpen}>
       <Content>
-        <Title>{`Confirma a exclusão de ${fruitDescription}?`}</Title>
+        <Title>{`Confirma a exclusão da fruta selecionada?`}</Title>
 
         <ButtonWrapper>
-          <Button color='primary'>Confirmar</Button>
+          <Button
+            color='primary'
+            onClick={() => onConfirm()}
+          >
+            Confirmar
+          </Button>
 
-          <Button>Cancelar</Button>
+          <Button onClick={() => onCancel()}>Cancelar</Button>
         </ButtonWrapper>
       </Content>
     </ModalContainer>
