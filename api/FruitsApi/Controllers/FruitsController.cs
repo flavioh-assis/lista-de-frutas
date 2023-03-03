@@ -35,7 +35,7 @@ public async Task<ActionResult<Fruit>> Post([FromBody] FruitDto dto)
 }
 
 [HttpGet]
-public async Task<ActionResult<IEnumerable<Fruit>>> GetAll()
+public async Task<ActionResult<List<Fruit>>> GetAll()
 {
     try
     {
