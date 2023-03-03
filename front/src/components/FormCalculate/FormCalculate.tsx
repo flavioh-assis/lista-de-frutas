@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Fruit, FruitDTO } from '../../types';
 import { Button, InputForm } from '../../components';
-import { ButtonWrapper, Form, InputWrapper, Title } from '../FormManage/FormManage.styled';
-import { FormCalculateContainer } from './FormCalculate.styled';
+import { ButtonWrapper, InputWrapper, Title } from '../FormManage/FormManage.styled';
+import { Form, FormCalculateContainer } from './FormCalculate.styled';
 import { useNavigate } from 'react-router-dom';
+import { Error } from '../InputForm/InputForm.styled';
 
 type Props = {
   formFieldsValue: Fruit;
@@ -16,6 +17,8 @@ type FormValues = FruitDTO & {
 
 const FormCalculate = ({ formFieldsValue }: Props) => {
   const { register, setValue, getValues, resetField } = useForm<FormValues>();
+  const [error, setError] = useState('');
+
   const nav = useNavigate();
 
   const setFormValues = (fruit: FruitDTO) => {
@@ -30,7 +33,7 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
 
     if (valueB === 0) {
       resetField('result');
-      alert('Não é possível dividir por zero.');
+      setError('Não é possível dividir por zero');
       return;
     }
 
@@ -39,6 +42,8 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
   };
 
   const handleMultiple = () => {
+    setError('');
+
     const valueA = getValues('valueA');
     const valueB = getValues('valueB');
 
@@ -84,6 +89,8 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
             disabled
           />
         </InputWrapper>
+
+        <Error hasError={error !== undefined}>{error}</Error>
 
         <ButtonWrapper>
           <Button
