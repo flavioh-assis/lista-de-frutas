@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
-export const Input = styled.input<{ hasError: boolean }>`
+export const Input = styled.input<{ disabled: boolean; hasError: boolean }>`
   background-color: #fff;
+  font-size: 11pt;
+  line-height: 22px;
+
+  border-radius: 6px;
   border-color: ${({ hasError }) => (hasError ? 'red' : '#d9d9d9')};
   border-style: solid;
   border-width: 1px;
-  border-radius: 6px;
-
-  color: #000;
-  font-size: 11pt;
-  line-height: 22px;
 
   padding: 4px 11px;
   transition: all 0.2s;
@@ -17,7 +16,11 @@ export const Input = styled.input<{ hasError: boolean }>`
 
   :hover,
   :focus {
-    border-color: ${({ hasError }) => (hasError ? 'red' : '#4147ff')};
+    border-color: ${({ disabled, hasError }) => {
+      if (disabled) return '#d9d9d9';
+
+      return hasError ? 'red' : '#4147ff';
+    }};
     outline: none;
   }
 `;
