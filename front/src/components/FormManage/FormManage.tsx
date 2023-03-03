@@ -1,8 +1,10 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Fruit } from '../../types';
-import { Button, FormInput } from '..';
+import { Button, InputForm } from '..';
 import { ButtonWrapper, Form, FormContainer, InputWrapper, Title } from './FormManage.styled';
 import { useEffect } from 'react';
+import { manageSchema } from '../../validation/manageSchema';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 type Props = {
   formFieldsValue?: Fruit;
@@ -10,8 +12,16 @@ type Props = {
   resetSelectedFruit: () => void;
 };
 
-const FormFruit = ({ formFieldsValue, onSubmit, resetSelectedFruit }: Props) => {
-  const { handleSubmit, register, reset, setValue } = useForm<Fruit>();
+const FormManage = ({ formFieldsValue, onSubmit, resetSelectedFruit }: Props) => {
+  const {
+    handleSubmit,
+    register,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm<Fruit>({
+    resolver: yupResolver(manageSchema),
+  });
 
   const handleFormSubmit: SubmitHandler<Fruit> = async fruit => {
     onSubmit(fruit).then(() => {
@@ -42,20 +52,23 @@ const FormFruit = ({ formFieldsValue, onSubmit, resetSelectedFruit }: Props) => 
 
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
         <InputWrapper>
-          <FormInput
+          <InputForm
             label='Descrição'
             register={register('description')}
+            error={errors.description?.message}
           />
 
-          <FormInput
+          <InputForm
             label='Valor A'
             register={register('valueA')}
+            error={errors.valueA?.message}
             type='number'
           />
 
-          <FormInput
+          <InputForm
             label='Valor B'
             register={register('valueB')}
+            error={errors.valueB?.message}
             type='number'
           />
         </InputWrapper>
@@ -80,4 +93,4 @@ const FormFruit = ({ formFieldsValue, onSubmit, resetSelectedFruit }: Props) => 
   );
 };
 
-export default FormFruit;
+export default FormManage;
