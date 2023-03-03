@@ -17,7 +17,8 @@ export const Page = styled.main`
 export const Button = styled.button<{ color?: 'primary' | 'default' }>`
   background: ${({ color }) => (color === 'primary' ? `${colors.blueDuett}` : `${colors.white}`)};
 
-  border-color: ${({ color }) => (color === 'primary' ? `${colors.black}` : `${colors.lightGrey}`)};
+  border-color: ${({ color }) =>
+    color === 'primary' ? `${colors.blueDuett}` : `${colors.lightGrey}`};
   border-style: solid;
   border-width: 1px;
   border-radius: 6px;
