@@ -18,7 +18,7 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
   const { register, setValue, getValues, resetField } = useForm<FormValues>();
   const nav = useNavigate();
 
-  const setValues = (fruit: FruitDTO) => {
+  const setFormValues = (fruit: FruitDTO) => {
     setValue('description', fruit.description);
     setValue('valueA', fruit.valueA);
     setValue('valueB', fruit.valueB);
@@ -49,7 +49,7 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
   const handleBack = () => nav(-1);
 
   useEffect(() => {
-    setValues(formFieldsValue);
+    setFormValues(formFieldsValue);
   }, [formFieldsValue]);
 
   return (
