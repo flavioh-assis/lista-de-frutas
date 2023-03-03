@@ -13,13 +13,7 @@ import { Fruit, FruitDTO } from '../../types';
 const ManageFruit = () => {
   const [api, contextHolder] = notification.useNotification();
 
-  const initialState: Fruit = {
-    id: 0,
-    description: '',
-    valueA: 0,
-    valueB: 0,
-  };
-  const [selectedFruit, setSelectedFruit] = useState(initialState);
+  const [selectedFruit, setSelectedFruit] = useState<Fruit | undefined>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [idToBeDeleted, setIdToBeDeleted] = useState(0);
 
@@ -34,7 +28,7 @@ const ManageFruit = () => {
 
   const openModal = () => setIsModalOpen(true);
 
-  const resetSelectedFruit = () => setSelectedFruit(initialState);
+  const resetSelectedFruit = () => setSelectedFruit(undefined);
 
   const openNotificationDeleteSuccess = () => {
     api.success({
@@ -73,7 +67,7 @@ const ManageFruit = () => {
   };
 
   const handleSubmit = async (fruit: Fruit) => {
-    return selectedFruit.id ? updateFruit(fruit) : addNewFruit(fruit);
+    return selectedFruit?.id ? updateFruit(fruit) : addNewFruit(fruit);
   };
 
   const addNewFruit = (fruit: FruitDTO) => {
