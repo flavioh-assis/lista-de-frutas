@@ -1,5 +1,5 @@
 import { Fruit } from '../../types';
-import { ButtonIcon } from '../../components';
+import { ButtonIcon, LinkIcon } from '../../components';
 import {
   Body,
   Cell,
@@ -21,7 +21,7 @@ type Props = {
 const Table = ({ fruits, setSelectedFruit, handleDelete }: Props) => {
   return (
     <TableContainer role='table'>
-      <Head role='rowgroup'>
+      <Head role='row'>
         <ColumnHeader role='columnheader'>Descrição</ColumnHeader>
         <ColumnHeader role='columnheader'>Valor A</ColumnHeader>
         <ColumnHeader role='columnheader'>Valor B</ColumnHeader>
@@ -30,31 +30,32 @@ const Table = ({ fruits, setSelectedFruit, handleDelete }: Props) => {
         <ColumnHeaderAction role='columnheader'>Excluir</ColumnHeaderAction>
       </Head>
 
-      <Body>
+      <Body role='rowgroup'>
         {fruits.length ? (
           fruits.map(f => (
-            <Row key={f.id}>
-              <Cell>{f.description}</Cell>
+            <Row
+              role='row'
+              key={f.id}
+            >
+              <Cell role='cell'>{f.description}</Cell>
+              <Cell role='cell'>{f.valueA}</Cell>
+              <Cell role='cell'>{f.valueB}</Cell>
 
-              <Cell>{f.valueA}</Cell>
-
-              <Cell>{f.valueB}</Cell>
-
-              <CellAction>
-                <ButtonIcon
-                  icon='link'
-                  onClick={() => console.log('link')}
+              <CellAction role='cell'>
+                <LinkIcon
+                  path='/calculate'
+                  fruit={f}
                 />
               </CellAction>
 
-              <CellAction>
+              <CellAction role='cell'>
                 <ButtonIcon
                   icon='edit'
                   onClick={() => setSelectedFruit(f)}
                 />
               </CellAction>
 
-              <CellAction>
+              <CellAction role='cell'>
                 <ButtonIcon
                   icon='delete'
                   onClick={() => handleDelete(f.id)}
