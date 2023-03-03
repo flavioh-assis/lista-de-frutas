@@ -7,10 +7,10 @@ import {
   MutationUpdate,
   UseQueryAllFruits,
 } from '../../services/fruit.service';
-import { Page as PageAddFruit } from '../../styles/shared';
+import { Page as PageManageFruit } from '../../styles/shared';
 import { Fruit, FruitDTO } from '../../types';
 
-const AddFruit = () => {
+const ManageFruit = () => {
   const [api, contextHolder] = notification.useNotification();
 
   const initialState: Fruit = {
@@ -134,7 +134,7 @@ const AddFruit = () => {
   }, []);
 
   return (
-    <PageAddFruit>
+    <PageManageFruit>
       {contextHolder}
 
       <FormFruit
@@ -154,8 +154,8 @@ const AddFruit = () => {
         onConfirm={deleteFruit}
         onCancel={closeModal}
       />
-    </PageAddFruit>
+    </PageManageFruit>
   );
 };
 
-export default AddFruit;
+export default ManageFruit;

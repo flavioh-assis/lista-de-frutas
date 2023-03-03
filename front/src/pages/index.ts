@@ -1,4 +1,4 @@
-import AddFruit from './AddFruit/AddFruit';
+import ManageFruit from './ManageFruit/ManageFruit';
+import Calculate from './Calculate/Calculate';
 
-export { AddFruit };
-
+export { ManageFruit, Calculate };

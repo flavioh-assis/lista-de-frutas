@@ -1,13 +1,12 @@
 import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom';
-import { AddFruit } from './pages';
-import Calculate from './pages/Calculate/Calculate';
+import { Calculate, ManageFruit } from './pages';
 
 const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route
         path='/'
-        element={<AddFruit />}
+        element={<ManageFruit />}
       />
       <Route
         path='/calculate'
