@@ -14,7 +14,7 @@ import {
 
 type Props = {
   fruits: Fruit[];
-  setSelectedFruit: React.Dispatch<React.SetStateAction<Fruit>>;
+  setSelectedFruit: React.Dispatch<React.SetStateAction<Fruit | undefined>>;
   handleDelete: (id: number) => Promise<void>;
 };
 

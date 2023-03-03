@@ -5,7 +5,7 @@ import { ButtonWrapper, Form, FormContainer, InputWrapper, Title } from './Form.
 import { useEffect } from 'react';
 
 type Props = {
-  formFieldsValue: Fruit;
+  formFieldsValue?: Fruit;
   onSubmit: (fruit: Fruit) => Promise<void>;
   resetSelectedFruit: () => void;
 };
@@ -22,8 +22,8 @@ const FormFruit = ({ formFieldsValue, onSubmit, resetSelectedFruit }: Props) => 
   const setValues = (fruit: Fruit) => {
     setValue('id', fruit.id);
     setValue('description', fruit.description);
-    fruit.valueA && setValue('valueA', fruit.valueA);
-    fruit.valueB && setValue('valueB', fruit.valueB);
+    setValue('valueA', fruit.valueA);
+    setValue('valueB', fruit.valueB);
   };
 
   const handleReset = () => {
@@ -33,7 +33,7 @@ const FormFruit = ({ formFieldsValue, onSubmit, resetSelectedFruit }: Props) => 
 
   useEffect(() => {
     reset();
-    setValues(formFieldsValue);
+    formFieldsValue && setValues(formFieldsValue);
   }, [formFieldsValue]);
 
   return (
