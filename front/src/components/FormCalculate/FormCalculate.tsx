@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Fruit, FruitDTO } from '../../types';
 import { Button, FormInput } from '../../components';
-import { ButtonWrapper, Form, InputWrapper, Title } from '../Form/Form.styled';
+import { ButtonWrapper, Form, InputWrapper, Title } from '../FormManage/FormManage.styled';
 import { FormCalculateContainer } from './FormCalculate.styled';
 import { useNavigate } from 'react-router-dom';
 

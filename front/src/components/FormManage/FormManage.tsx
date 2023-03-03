@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Fruit } from '../../types';
-import { Button, FormInput } from '../../components';
-import { ButtonWrapper, Form, FormContainer, InputWrapper, Title } from './Form.styled';
+import { Button, FormInput } from '..';
+import { ButtonWrapper, Form, FormContainer, InputWrapper, Title } from './FormManage.styled';
 import { useEffect } from 'react';
 
 type Props = {
@@ -65,7 +65,7 @@ const FormFruit = ({ formFieldsValue, onSubmit, resetSelectedFruit }: Props) => 
             type='submit'
             color='primary'
           >
-            Salvar
+            {formFieldsValue ? 'Salvar' : 'Adicionar'}
           </Button>
 
           <Button

@@ -1,6 +1,6 @@
 import { notification } from 'antd';
 import { useEffect, useState } from 'react';
-import { FormFruit, Modal, Table } from '../../components';
+import { FormManage, Modal, Table } from '../../components';
 import {
   MutationCreate,
   MutationDelete,
@@ -131,7 +131,7 @@ const ManageFruit = () => {
     <PageManageFruit>
       {contextHolder}
 
-      <FormFruit
+      <FormManage
         formFieldsValue={selectedFruit}
         onSubmit={handleSubmit}
         resetSelectedFruit={resetSelectedFruit}

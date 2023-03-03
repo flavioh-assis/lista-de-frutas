@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { InputWrapper } from '../../components/Form/Form.styled';
+import { InputWrapper } from '../FormManage/FormManage.styled';
 
 export const FormCalculateContainer = styled.div`
   display: flex;

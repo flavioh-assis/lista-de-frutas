@@ -1,5 +1,5 @@
 import { Button } from '../../components';
-import { ButtonWrapper } from '../Form/Form.styled';
+import { ButtonWrapper } from '../FormManage/FormManage.styled';
 import { ModalContainer, Content, Title } from './Modal.styled';
 
 type Props = {
