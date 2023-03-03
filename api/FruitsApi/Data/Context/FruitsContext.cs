@@ -1,4 +1,4 @@
-using FruitsApi.Models;
+using FruitsApi.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace FruitsApi.Data.Context
