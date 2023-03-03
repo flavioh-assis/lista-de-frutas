@@ -1,8 +1,7 @@
-namespace FruitsApi.Models;
+namespace FruitsApi.DTOs;
 
-public class Fruit
+public class FruitDto
 {
-    public int Id { get; set; }
     public string Description { get; set; }
     public int ValueA { get; set; }
     public int ValueB { get; set; }
