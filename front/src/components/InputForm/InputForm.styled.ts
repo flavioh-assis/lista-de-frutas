@@ -1,25 +1,27 @@
 import styled from 'styled-components';
+import color from '../../styles/colors';
+import resource from '../../styles/resources';
 
 export const Input = styled.input<{ disabled: boolean; hasError: boolean }>`
-  background-color: #fff;
+  background-color: ${color.white};
   font-size: 11pt;
   line-height: 22px;
 
   border-radius: 6px;
-  border-color: ${({ hasError }) => (hasError ? 'red' : '#d9d9d9')};
+  border-color: ${({ hasError }) => (hasError ? `${color.error}` : `${color.grey}`)};
   border-style: solid;
   border-width: 1px;
 
   padding: 4px 11px;
-  transition: all 0.2s;
+  transition: ${resource.cubicBezier};
   width: 100%;
 
   :hover,
   :focus {
     border-color: ${({ disabled, hasError }) => {
-      if (disabled) return '#d9d9d9';
+      if (disabled) return `${color.grey}`;
 
-      return hasError ? 'red' : '#4147ff';
+      return hasError ? `${color.error}` : `${color.blueDuett}`;
     }};
     outline: none;
   }

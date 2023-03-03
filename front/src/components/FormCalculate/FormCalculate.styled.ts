@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from '../../styles/colors';
 import { InputWrapper } from '../FormManage/FormManage.styled';
 
 export const FormCalculateContainer = styled.main`
@@ -7,7 +8,7 @@ export const FormCalculateContainer = styled.main`
   align-items: center;
   gap: 1.5rem;
 
-  background: #eee;
+  background: ${colors.lightGrey};
   border-radius: 6px;
   padding: 1rem;
   width: 100%;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from '../../styles/colors';
 
 export const ModalContainer = styled.dialog<{ isOpen: boolean }>`
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
@@ -6,7 +7,7 @@ export const ModalContainer = styled.dialog<{ isOpen: boolean }>`
   justify-content: center;
   align-items: center;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: ${colors.bgModal};
   position: fixed;
   inset: 0 0 0 0;
   height: 100vh;
@@ -17,7 +18,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fff;
+  background: ${colors.white};
 
   border-radius: 6px;
   padding: 2rem;

@@ -41,7 +41,7 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
     setValue('result', result);
   };
 
-  const handleMultiple = () => {
+  const handleMultiply = () => {
     setError('');
 
     const valueA = getValues('valueA');
@@ -104,7 +104,7 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
           <Button
             type='button'
             color='primary'
-            onClick={handleMultiple}
+            onClick={handleMultiply}
           >
             Multiplicar
           </Button>
