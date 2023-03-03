@@ -1,30 +1,20 @@
-import { FiExternalLink, FiEdit2, FiTrash2 } from 'react-icons/fi';
-import { StyledButton } from './ButtonIcon.styled';
+import { FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { ButtonContainer } from './ButtonIcon.styled';
 
 type Props = {
-  icon: 'link' | 'edit' | 'delete';
-  size?: number;
+  icon: 'edit' | 'delete';
   onClick: VoidFunction;
 };
 
-const ButtonIcon = ({ icon, size = 20, onClick }: Props) => {
-  const iconComponent = (icon: string, size: number) => {
-    if (icon === 'link') {
-      return <FiExternalLink size={size} />;
-    }
-    if (icon === 'edit') {
-      return <FiEdit2 size={size} />;
-    }
-    return <FiTrash2 size={size} />;
-  };
-
+const ButtonIcon = ({ icon, onClick }: Props) => {
   return (
-    <StyledButton
+    <ButtonContainer
       onClick={() => onClick()}
       type='button'
+      name={icon}
     >
-      {iconComponent(icon, size)}
-    </StyledButton>
+      {icon === 'edit' ? <FiEdit2 size={20} /> : <FiTrash2 size={20} />}
+    </ButtonContainer>
   );
 };
 
