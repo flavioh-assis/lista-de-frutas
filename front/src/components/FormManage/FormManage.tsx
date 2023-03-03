@@ -1,10 +1,11 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Fruit } from '../../types';
-import { Button, InputForm } from '..';
+import { InputForm } from '..';
 import { ButtonWrapper, Form, FormContainer, InputWrapper, Title } from './FormManage.styled';
 import { useEffect } from 'react';
-import { manageSchema } from '../../validation/manageSchema';
+import { manageSchema } from './validation/manageSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from '../../styles/shared';
 
 type Props = {
   formFieldsValue?: Fruit;

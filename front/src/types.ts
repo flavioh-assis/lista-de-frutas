@@ -1,10 +1,9 @@
-export type FruitDTO = {
+export type FruitDto = {
   description: string;
   valueA: number;
   valueB: number;
 };
 
-export type Fruit = FruitDTO & {
+export type Fruit = FruitDto & {
   id: number;
 };
-

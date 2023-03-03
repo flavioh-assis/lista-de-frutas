@@ -8,7 +8,7 @@ import {
   UseQueryAllFruits,
 } from '../../services/fruit.service';
 import { Page as ManageFruitContainer } from '../../styles/shared';
-import { Fruit, FruitDTO } from '../../types';
+import { Fruit, FruitDto } from '../../types';
 
 const ManageFruit = () => {
   const [api, contextHolder] = notification.useNotification();
@@ -70,7 +70,7 @@ const ManageFruit = () => {
     return selectedFruit?.id ? updateFruit(fruit) : addNewFruit(fruit);
   };
 
-  const addNewFruit = (fruit: FruitDTO) => {
+  const addNewFruit = (fruit: FruitDto) => {
     return new Promise<void>((resolve, reject) => {
       mutateCreate(fruit, {
         onSuccess: () => {

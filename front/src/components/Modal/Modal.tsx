@@ -1,4 +1,4 @@
-import { Button } from '../../components';
+import { Button } from '../../styles/shared';
 import { ButtonWrapper } from '../FormManage/FormManage.styled';
 import { ModalContainer, Content, Title } from './Modal.styled';
 

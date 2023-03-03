@@ -1,10 +1,10 @@
 import { useMutation, useQuery } from 'react-query';
 import api from './api';
-import { Fruit, FruitDTO } from '../types';
+import { Fruit, FruitDto } from '../types';
 
 const fruitsUrl = 'fruits';
 
-const createFruit = async (fruit: FruitDTO) => {
+const createFruit = async (fruit: FruitDto) => {
   return await api.post(fruitsUrl, fruit);
 };
 

@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Fruit, FruitDTO } from '../../types';
-import { Button, InputForm } from '../../components';
+import { Fruit, FruitDto } from '../../types';
+import { InputForm } from '../../components';
 import { ButtonWrapper, InputWrapper, Title } from '../FormManage/FormManage.styled';
 import { Form, FormCalculateContainer } from './FormCalculate.styled';
 import { useNavigate } from 'react-router-dom';
 import { Error } from '../InputForm/InputForm.styled';
+import { Button } from '../../styles/shared';
 
 type Props = {
   formFieldsValue: Fruit;
 };
 
-type FormValues = FruitDTO & {
+type FormValues = FruitDto & {
   result: number;
 };
 
@@ -21,7 +22,7 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
 
   const nav = useNavigate();
 
-  const setFormValues = (fruit: FruitDTO) => {
+  const setFormValues = (fruit: FruitDto) => {
     setValue('description', fruit.description);
     setValue('valueA', fruit.valueA);
     setValue('valueB', fruit.valueB);

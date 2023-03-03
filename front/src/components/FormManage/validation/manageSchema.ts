@@ -1,7 +1,7 @@
 import { number, object, ObjectSchema, string } from 'yup';
-import { FruitDTO } from '../types';
+import { FruitDto } from '../../../types';
 
-export const manageSchema: ObjectSchema<FruitDTO> = object().shape({
+export const manageSchema: ObjectSchema<FruitDto> = object().shape({
   description: string().required('Campo obrigatório'),
   valueA: number()
     .typeError('Valor deve ser um número positivo')
