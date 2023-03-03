@@ -4,6 +4,7 @@ import { Fruit, FruitDTO } from '../../types';
 import { Button, FormInput } from '../../components';
 import { ButtonWrapper, Form, InputWrapper, Title } from '../Form/Form.styled';
 import { FormCalculateContainer } from './FormCalculate.styled';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   formFieldsValue: Fruit;
@@ -14,7 +15,8 @@ type FormValues = FruitDTO & {
 };
 
 const FormCalculate = ({ formFieldsValue }: Props) => {
-  const { register, setValue, getValues } = useForm<FormValues>();
+  const { register, setValue, getValues, resetField } = useForm<FormValues>();
+  const nav = useNavigate();
 
   const setValues = (fruit: FruitDTO) => {
     setValue('description', fruit.description);
@@ -27,7 +29,8 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
     const valueB = getValues('valueB');
 
     if (valueB === 0) {
-      alert('Não pode dividir por zero.');
+      resetField('result');
+      alert('Não é possível dividir por zero.');
       return;
     }
 
@@ -42,6 +45,8 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
     const result = valueA * valueB;
     setValue('result', result);
   };
+
+  const handleBack = () => nav(-1);
 
   useEffect(() => {
     setValues(formFieldsValue);
@@ -95,6 +100,12 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
             onClick={handleMultiple}
           >
             Multiplicar
+          </Button>
+          <Button
+            type='button'
+            onClick={handleBack}
+          >
+            Voltar
           </Button>
         </ButtonWrapper>
       </Form>
