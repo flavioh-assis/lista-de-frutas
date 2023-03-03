@@ -1,4 +1,4 @@
-import ManageFruit from './ManageFruit/ManageFruit';
-import Calculate from './Calculate/Calculate';
+import ManageFruit from './ManageFruit/ManageFruit.page';
+import Calculate from './Calculate/Calculate.page';
 
 export { ManageFruit, Calculate };

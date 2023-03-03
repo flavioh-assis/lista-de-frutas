@@ -1,15 +1,15 @@
 import { useLocation } from 'react-router-dom';
 import { FormCalculate } from '../../components';
 import { Fruit } from '../../types';
-import { Page as PageCalculate } from '../../styles/shared';
+import { Page as CalculateContainer } from '../../styles/shared';
 
 const Calculate = () => {
   const { state: fruit }: { state: Fruit } = useLocation();
 
   return (
-    <PageCalculate>
+    <CalculateContainer>
       <FormCalculate formFieldsValue={fruit} />
-    </PageCalculate>
+    </CalculateContainer>
   );
 };
 

@@ -7,7 +7,7 @@ import {
   MutationUpdate,
   UseQueryAllFruits,
 } from '../../services/fruit.service';
-import { Page as PageManageFruit } from '../../styles/shared';
+import { Page as ManageFruitContainer } from '../../styles/shared';
 import { Fruit, FruitDTO } from '../../types';
 
 const ManageFruit = () => {
@@ -128,7 +128,7 @@ const ManageFruit = () => {
   }, []);
 
   return (
-    <PageManageFruit>
+    <ManageFruitContainer>
       {contextHolder}
 
       <FormManage
@@ -148,7 +148,7 @@ const ManageFruit = () => {
         onConfirm={deleteFruit}
         onCancel={closeModal}
       />
-    </PageManageFruit>
+    </ManageFruitContainer>
   );
 };
 
