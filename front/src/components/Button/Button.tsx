@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const Button = styled.button<{ color?: 'primary' | 'default' }>`
   background: ${({ color }) => (color === 'primary' ? '#4147ff' : '#fff')};
-  box-shadow: 0px 4px 10px -5px rgba(0, 0, 0, 0.75);
 
   border-color: ${({ color }) => (color === 'primary' ? '#00000000' : '#d9d9d9')};
   border-style: solid;

@@ -6,6 +6,7 @@ import {
   CellAction,
   ColumnHeader,
   ColumnHeaderAction,
+  Footer,
   Head,
   Row,
   RowEmpty,
@@ -67,6 +68,8 @@ const Table = ({ fruits, setSelectedFruit, handleDelete }: Props) => {
           <RowEmpty>Nenhuma fruta cadastrada</RowEmpty>
         )}
       </Body>
+
+      <Footer />
     </TableContainer>
   );
 };

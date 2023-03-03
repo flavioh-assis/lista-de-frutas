@@ -4,17 +4,15 @@ export const TableContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-left: solid 1px #d9d9d9;
   transition: 0.5s;
+
   background: #fff;
   border-radius: 6px;
   box-shadow: 0px 4px 10px -5px rgba(0, 0, 0, 0.75);
-  /* padding: 5px; */
 `;
 
 export const Head = styled.div`
   display: flex;
-  /* padding: 5px 0; */
   background: #4147ff;
   color: #fff;
   border-radius: 6px 6px 0 0;
@@ -30,8 +28,16 @@ export const ColumnHeader = styled.div`
   padding: 0 10px;
   font-weight: bold;
   border-right: 1px solid #fff;
-  /* background: lightGrey; */
-  /* border: 1px solid black; */
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  width: 100%;
+  background: #4147ff;
+
+  padding: 1rem 0;
+  font-weight: bold;
+  border-radius: 0 0 6px 6px;
 `;
 
 export const ColumnHeaderAction = styled.div`
@@ -46,8 +52,6 @@ export const ColumnHeaderAction = styled.div`
   border-right: 1px solid #fff;
   font-weight: bold;
 
-  /* background: aquamarine; */
-
   :last-of-type {
     border: none;
   }
@@ -56,8 +60,6 @@ export const ColumnHeaderAction = styled.div`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  /* padding: 5px; */
-  /* background: green; */
 `;
 
 export const Row = styled.div`
@@ -65,14 +67,8 @@ export const Row = styled.div`
   justify-content: center;
 
   :nth-of-type(even) {
-    background: #ddd;
+    background: #eee;
   }
-  /* padding: 5px; */
-  /* background: red; */
-  /* border: 1px solid black; */
-  /* background: #1976d2; */
-  /* color: white; */
-  /* border-color: #1565c0; */
 `;
 
 export const RowEmpty = styled(Row)`
@@ -87,8 +83,6 @@ export const Cell = styled.div`
   margin: 10px 0;
   padding: 0 10px;
   border-right: 1px solid grey;
-  /* background: aqua; */
-  /* border: 2px solid black; */
 `;
 
 export const CellAction = styled.div`
@@ -105,8 +99,4 @@ export const CellAction = styled.div`
   :last-of-type {
     border: none;
   }
-  /* background: aquamarine; */
-  /* flex: 1; */
-
-  /* border: 2px solid black; */
 `;

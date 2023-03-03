@@ -24,8 +24,7 @@ export const FormContainer = styled.div`
   align-items: center;
   gap: 1.5rem;
 
-  background: #ddd;
-  box-shadow: 0px 4px 10px -5px rgba(0, 0, 0, 0.75);
+  background: #eee;
   border-radius: 6px;
   padding: 1rem;
   width: 100%;
@@ -33,7 +32,6 @@ export const FormContainer = styled.div`
   @media (min-width: 700px) {
     ${Form}, ${InputWrapper} {
       flex-direction: row;
-      align-items: flex-end;
     }
   }
 `;
