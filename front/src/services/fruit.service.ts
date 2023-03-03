@@ -5,15 +5,13 @@ import { Fruit, FruitDTO } from '../types';
 const fruitsUrl = 'fruits';
 
 const createFruit = async (fruit: FruitDTO) => {
-  const { data } = await api.post(fruitsUrl, fruit);
-
-  return data as Fruit;
+  return await api.post(fruitsUrl, fruit);
 };
 
 const updateFruit = async (fruit: Fruit) => {
-  const { data } = await api.put(`${fruitsUrl}/${fruit.id}`, fruit);
+  const url = `${fruitsUrl}/${fruit.id}`;
 
-  return data as Fruit;
+  return await api.put(url, fruit);
 };
 
 const getAllFruits = async () => {
@@ -23,9 +21,9 @@ const getAllFruits = async () => {
 };
 
 const deleteFruit = async (id: number) => {
-  const { data } = await api.delete(`${fruitsUrl}/${id}`);
+  const url = `${fruitsUrl}/${id}`;
 
-  return data as Fruit;
+  return await api.delete(url);
 };
 
 export const MutationCreate = () => useMutation(createFruit);
