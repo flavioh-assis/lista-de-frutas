@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Fruit, FruitDTO } from '../../types';
-import { Button, FormInput } from '../../components';
+import { Button, InputForm } from '../../components';
 import { ButtonWrapper, Form, InputWrapper, Title } from '../FormManage/FormManage.styled';
 import { FormCalculateContainer } from './FormCalculate.styled';
 import { useNavigate } from 'react-router-dom';
@@ -58,27 +58,27 @@ const FormCalculate = ({ formFieldsValue }: Props) => {
 
       <Form>
         <InputWrapper>
-          <FormInput
+          <InputForm
             label='Descrição'
             register={register('description')}
             disabled
           />
 
-          <FormInput
+          <InputForm
             label='Valor A'
             register={register('valueA')}
             type='number'
             disabled
           />
 
-          <FormInput
+          <InputForm
             label='Valor B'
             register={register('valueB')}
             type='number'
             disabled
           />
 
-          <FormInput
+          <InputForm
             label='Resultado'
             register={register('result')}
             disabled

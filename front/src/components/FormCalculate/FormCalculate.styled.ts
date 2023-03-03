@@ -7,7 +7,7 @@ export const FormCalculateContainer = styled.div`
   align-items: center;
   gap: 1.5rem;
 
-  background: #ddd;
+  background: #eee;
   border-radius: 6px;
   padding: 1rem;
   width: 100%;
