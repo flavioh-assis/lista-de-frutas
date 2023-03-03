@@ -1,4 +1,6 @@
-using FruitsApi.Models;
+using AutoMapper;
+using FruitsApi.DTOs;
+using FruitsApi.Entities;
 using FruitsApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,81 +11,87 @@ namespace FruitsApi.Controllers;
 public class FruitsController : ControllerBase
 {
     private readonly FruitsService _service;
+    private readonly IMapper _mapper;
 
-    public FruitsController(FruitsService service) => _service = service;
-
-    [HttpPost]
-    public async Task<ActionResult<Fruit>> Post([FromBody] Fruit request)
-    {
-        try
-        {
-            var createdFruit = await _service.Create(request);
-
-            return Created("Fruit created.", createdFruit);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-        }
+    public FruitsController(FruitsService service, IMapper mapper) {
+        _service = service;
+        _mapper = mapper;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Fruit>>> GetAll()
+[HttpPost]
+public async Task<ActionResult<Fruit>> Post([FromBody] FruitDto dto)
+{
+    try
     {
-        try
-        {
-            var fruits = _service.GetAll();
+        var fruit = _mapper.Map<Fruit>(dto);
+        var createdFruit = await _service.Create(fruit);
 
-            return Ok(fruits);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-        }
+        return Created("Fruit created.", createdFruit);
     }
-
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Fruit>> GetById([FromRoute] int id)
+    catch (Exception e)
     {
-        try
-        {
-            var fruit = await _service.GetById(id);
-
-            return Ok(fruit);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-        }
+        return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
     }
+}
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult<Fruit>> Update([FromRoute] int id, [FromBody] Fruit request)
+[HttpGet]
+public async Task<ActionResult<IEnumerable<Fruit>>> GetAll()
+{
+    try
     {
-        try
-        {
-            var fruit = await _service.Update(id, request);
+        var fruits = await _service.GetAll();
 
-            return Ok(fruit);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-        }
+        return Ok(fruits);
     }
-    
-    [HttpDelete("{id}")]
-    public async Task<ActionResult<Fruit>> Delete([FromRoute] int id)
+    catch (Exception e)
     {
-        try
-        {
-            var deletedFruit = await _service.Delete(id);
-
-            return Ok(deletedFruit);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-        }
+        return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
     }
+}
+
+[HttpGet("{id}")]
+public async Task<ActionResult<Fruit>> GetById([FromRoute] int id)
+{
+    try
+    {
+        var fruit = await _service.GetById(id);
+
+        return Ok(fruit);
+    }
+    catch (Exception e)
+    {
+        return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+    }
+}
+
+[HttpPut("{id}")]
+public async Task<ActionResult<Fruit>> Update([FromRoute] int id, [FromBody] FruitDto dto)
+{
+    try
+    {
+        var fruit = await _service.Update(id, dto);
+
+        return Ok(fruit);
+    }
+    catch (Exception e)
+    {
+        return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+    }
+}
+
+[HttpDelete("{id}")]
+public async Task<ActionResult<Fruit>> Delete([FromRoute] int id)
+{
+    try
+    {
+        var deletedFruit = await _service.Delete(id);
+
+        return Ok(deletedFruit);
+    }
+    catch (Exception e)
+    {
+        return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+    }
+}
+
 }
