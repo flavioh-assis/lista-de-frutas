@@ -13,7 +13,7 @@ export const ButtonContainer = styled.button`
   color: ${color.blueDuett};
 
   :hover {
-    background: #fff;
+    background: ${color.white};
     box-shadow: ${resource.shadow};
   }
 `;
