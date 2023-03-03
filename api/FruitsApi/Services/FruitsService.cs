@@ -17,13 +17,12 @@ public class FruitsService
         _mapper = mapper;
     }
 
-    private async Task CommitAsync() => await _context.SaveChangesAsync();
-
-    public async Task<Fruit> Create(Fruit fruit)
+    public async Task<Fruit> Create(FruitDto dto)
     {
+        var fruit = _mapper.Map<Fruit>(dto);
         _context.Fruits.Add(fruit);
-        
-        await CommitAsync();
+
+        await _context.SaveChangesAsync();
 
         return fruit;
     }
@@ -39,6 +38,9 @@ public class FruitsService
     {
         var fruit = await _context.Fruits.FindAsync(id);
 
+        if (fruit is null)
+            throw new NotFoundException("Fruit not found.");
+
         return fruit;
     }
 
@@ -46,8 +48,8 @@ public class FruitsService
     {
         var fruit = await GetById(id);
         _mapper.Map(newData, fruit);
-        
-        await CommitAsync();
+
+        await _context.SaveChangesAsync();
 
         return fruit;
     }
@@ -57,7 +59,7 @@ public class FruitsService
         var fruit = await GetById(id);
         _context.Fruits.Remove(fruit);
 
-        await CommitAsync();
+        await _context.SaveChangesAsync();
 
         return fruit;
     }

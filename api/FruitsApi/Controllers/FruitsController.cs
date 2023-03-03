@@ -1,6 +1,4 @@
-using AutoMapper;
 using FruitsApi.DTOs;
-using FruitsApi.Entities;
 using FruitsApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,87 +9,46 @@ namespace FruitsApi.Controllers;
 public class FruitsController : ControllerBase
 {
     private readonly FruitsService _service;
-    private readonly IMapper _mapper;
 
-    public FruitsController(FruitsService service, IMapper mapper)
-    {
-        _service = service;
-        _mapper = mapper;
-    }
+    public FruitsController(FruitsService service) => _service = service;
 
     [HttpPost]
-    public async Task<ActionResult<Fruit>> Post([FromBody] FruitDto dto)
+    public async Task<IActionResult> Post([FromBody] FruitDto dto)
     {
-        try
-        {
-            var fruit = _mapper.Map<Fruit>(dto);
-            var createdFruit = await _service.Create(fruit);
+        var createdFruit = await _service.Create(dto);
 
-            return Created("Fruit created.", createdFruit);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-        }
+        return Created("", createdFruit);
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Fruit>>> GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        try
-        {
-            var fruits = await _service.GetAll();
+        var fruits = await _service.GetAll();
 
-            return Ok(fruits);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-        }
+        return Ok(fruits);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Fruit>> GetById([FromRoute] int id)
+    public async Task<IActionResult> GetById([FromRoute] int id)
     {
-        try
-        {
-            var fruit = await _service.GetById(id);
+        var fruit = await _service.GetById(id);
 
-            return Ok(fruit);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-        }
+        return Ok(fruit);
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<Fruit>> Update([FromRoute] int id, [FromBody] FruitDto dto)
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] FruitDto dto)
     {
-        try
-        {
-            var fruit = await _service.Update(id, dto);
+        var fruit = await _service.Update(id, dto);
 
-            return Ok(fruit);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-        }
+        return Ok(fruit);
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<Fruit>> Delete([FromRoute] int id)
+    public async Task<IActionResult> Delete([FromRoute] int id)
     {
-        try
-        {
-            var deletedFruit = await _service.Delete(id);
+        await _service.Delete(id);
 
-            return Ok(deletedFruit);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-        }
+        return NoContent();
     }
 }

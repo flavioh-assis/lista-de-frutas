@@ -1,7 +1,10 @@
-using AutoMapper;
+using System.Net;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using FruitsApi;
 using FruitsApi.Data.Context;
 using FruitsApi.DTOs;
-using FruitsApi.Entities;
+using FruitsApi.Profiles;
 using FruitsApi.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,19 +17,35 @@ builder.Services.AddDbContext<FruitContext>(opt =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(typeof(Program));
-
-var mapperConfig = new MapperConfiguration(cfg =>
-{
-    cfg.CreateMap<FruitDto, Fruit>();
-});
-
-var mapper = mapperConfig.CreateMapper();
-builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
+builder.Services.AddFluentValidationAutoValidation();
 
 builder.Services.AddScoped<FruitsService>();
+builder.Services.AddScoped<FruitValidator>();
+builder.Services.AddScoped<IValidator<FruitDto>, FruitValidator>();
+builder.Services.AddFluentValidationAutoValidation(config => { config.DisableDataAnnotationsValidation = true; });
 
 var app = builder.Build();
+
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next.Invoke();
+    }
+    catch (NotFoundException ex)
+    {
+        context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+
+        await context.Response.WriteAsync(ex.Message);
+    }
+    catch (Exception ex)
+    {
+        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+        await context.Response.WriteAsync(ex.Message);
+    }
+});
 
 app.UseCors(options =>
     options.WithOrigins("http://localhost:3000")
