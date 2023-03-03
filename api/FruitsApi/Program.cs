@@ -1,4 +1,7 @@
+using AutoMapper;
 using FruitsApi.Data.Context;
+using FruitsApi.DTOs;
+using FruitsApi.Entities;
 using FruitsApi.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +14,15 @@ builder.Services.AddDbContext<FruitContext>(opt =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(Program));
+
+var mapperConfig = new MapperConfiguration(cfg =>
+{
+    cfg.CreateMap<FruitDto, Fruit>();
+});
+
+var mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 builder.Services.AddScoped<FruitsService>();
 
