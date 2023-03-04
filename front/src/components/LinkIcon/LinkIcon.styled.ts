@@ -17,7 +17,7 @@ export const StyledLink = styled(Link)`
   width: 100%;
 
   :hover {
-    background: #fff;
+    background: ${colors.white};
     box-shadow: ${resource.shadow};
   }
 `;
