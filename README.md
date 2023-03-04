@@ -18,11 +18,11 @@ Projeto criado como teste técnico para a vaga de Desenvolvedor .Net / React da 
 # Como Executar
 
 ## Pré-requisitos
-  Antes de começar, certifique-se que você tenha as seguintes dependẽncias:
+  Antes de começar, certifique-se que você tenha as seguintes dependẽncias instaladas:
   * Node.js versão >= v14
   * .NET Core 6
-  * Instãncia Postgres
   * .NET EF Tool
+  * Instância Postgres
    
 ## Instalando o projeto
 Faça um clone do repositório:
