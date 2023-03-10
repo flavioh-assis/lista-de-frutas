@@ -6,8 +6,7 @@ Projeto criado como teste técnico para a vaga de Desenvolvedor .Net / React da 
 
   * ReactJS
   * TypeScript
-  * Styled Compoenents
-  * Axios
+  * Styled Components
   * React Query
   
   * .NET Core 6
