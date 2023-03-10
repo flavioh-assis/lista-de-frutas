@@ -2,7 +2,25 @@
 
 Projeto criado como teste técnico para a vaga de Desenvolvedor .Net / React da empresa [Duett Software](https://duettsoftware.com/).
 
-# Tecnologias
+# Objetivo
+Criar uma lista de FRUTAS conforme o exemplo abaixo, que conte com uma descrição, um campo inteiro de valor A e outro de valor B. A lista também deve ter um botão de ação que deve abrir o formulário representado a direita. No formulário devem aparecer todos os valores e um campo onde deverá aparecer o resultado da divisão de A por B ou a multiplicação, conforme cada ação realizada.
+
+Os dados devem vir a partir de uma tabela em um banco de dados da sua escolha.
+
+Será avaliada a organização, funcionalidade, estilização e todos os componentes de forma geral.
+
+Observações: 
+
+    Linguagem de programação React + .Net 
+
+    O código-fonte deve ser enviado pelo github.
+
+    O Link do repositório deve constar no preenchimento do seu formulário.
+    
+Exemplo:
+![pasted image 0](https://user-images.githubusercontent.com/38504393/224324804-a20161c3-1fc1-40ff-8403-b6194ef24e58.png)
+
+# Tecnologias Utilizadas
 
   * ReactJS
   * TypeScript
@@ -17,7 +35,7 @@ Projeto criado como teste técnico para a vaga de Desenvolvedor .Net / React da 
 # Como Executar
 
 ## Pré-requisitos
-  Antes de começar, certifique-se que você tenha as seguintes dependẽncias instaladas:
+  Antes de começar, certifique-se que você tenha as seguintes dependências instaladas:
   * Node.js versão >= v14
   * .NET Core 6
   * .NET EF Tool
@@ -38,7 +56,7 @@ cd api
 Altere a `ConnectionString` no arquivo `appsettings.json`
 ```
 "ConnectionStrings": { 
-  "DefaultConnection": "Server=127.0.0.1;Port=5432;Database=database;User Id=postgres;Password=senha;"
+  "DefaultConnection": "Server=127.0.0.1;Port=5432;Database=MeuBanco;User Id=MeuUsuario;Password=MinhaSenha;"
 }
 ```
 
