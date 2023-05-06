@@ -1,4 +1,4 @@
-# My Fruits
+# Lista de frutas
 
 Projeto criado como teste técnico para a vaga de Desenvolvedor .Net / React.
 
