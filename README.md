@@ -1,6 +1,6 @@
 # Lista de frutas
 
-Projeto criado como teste técnico para a vaga de Desenvolvedor .Net / React.
+Projeto criado como teste técnico para a vaga de Desenvolvedor .Net / React no prazo de 1 semana.
 
 # Objetivo
 Criar uma lista de FRUTAS conforme o exemplo abaixo, que conte com uma descrição, um campo inteiro de valor A e outro de valor B. A lista também deve ter um botão de ação que deve abrir o formulário representado a direita. No formulário devem aparecer todos os valores e um campo onde deverá aparecer o resultado da divisão de A por B ou a multiplicação, conforme cada ação realizada.
